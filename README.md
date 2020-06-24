@@ -1,2 +1,1 @@
-# About Me 
- Hello, I'm Wanyi Wang. 
+Wanyi-Wang-PHYS-S12
