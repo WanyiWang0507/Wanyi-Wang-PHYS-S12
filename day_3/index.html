@@ -10,6 +10,14 @@ img {
   margin-right: auto;
   width:50%;
 }
+video
+{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+    width:100%;
+
+}
 /*class="row justify-content-center"*/
 p {
 	margin: 120px; 
@@ -55,29 +63,41 @@ body {
 
 
 
-    <p> &nbsp; &nbsp; I also learnt how to use Arbuino to communicate with the Metro MO microcontroller. <br></p>
+    <p> &nbsp; &nbsp; I also learnt how to use Arbuino to communicate with the Metro MO microcontroller. By importing a example program, I successfully made connection between my laptop and the microcontroller. As shown in the video below, the red LED on the microcontroller is "blinking". <br></p>
 
   
-		<video width="320" height="240" autoplay src="blink.mp4" type="video/mp4">
-        
-  
-
-
-    <p> &nbsp; &nbsp;I then used "extrude" to create the hollow part of the wheel. As I notice that the center parts should not be extruded all the way through, I did "remove" to dig the holes half way. On the other hand, <br></p>
-    	
-  
-    	<img src="./process.jpg"alt="Card image cap">
-
+		<video width="320" height="240" controls>
+		<source src="blink.mp4" type="video/mp4">
+		</video>
     
 
-     <p>  &nbsp; &nbsp;To create the smaller parts around, I learned new tools including "project","create a new plane via offset" and "circular pattern". I split my circle into 32 equal parts, and as I project half of them onto the plane I created, I had 16 on each side of the wheel, which I then arranged to every other space.  I had another problem of having multiple parts in one part studio. I fixed it by using "Boolean" and substiting "extrude-add" for "extruded-new". <br></p>
+	<p>  &nbsp; &nbsp;During the lab, I learnt to measure the varying voltage drop around a potentiometer. With the Microcontroller in (ADC). I had a hard time setting up my circuit, with the measurement fluctuating between 0.01v and 0.02v. The multimeter came handy in this case to help locate the problem in my circuit.<br></p>
 
 
 
-	 <p>  &nbsp; &nbsp;This is the final result of my wheel. <br></p>
-	
+	 <img src="./potentiometer.jpg"alt="Card image cap">
 
-		<img src="./result.jpg"alt="Card image cap">
+
+  
+
+
+    <p> &nbsp; &nbsp; After class, I explored on two different ways of connecting two resistors, in series and in parallel, as what I did on Tinkcad early. Two resistors connected in series can be used as a voltage divider, because there is a voltage drop after each resistor. According to Ohm's Law (I=V/R), I was able to calculate the current in this circuit with measurements taken by the multimeter. As for the parallel circuit, I used the same method to measure voltage drop and calculate current. I found that the voltage drop around one of the resistors equals to the one around the power supplier. I also found that the more identical parallel resistors I added, the less total resistance this structure had.  <br></p>
+
+    <p> &nbsp; &nbsp; Considering that my final project may contain two or more electric conponents, I decided to experiment on the efficiency of parallel circuit and series sircuit. Because in a parallel structure, the voltage around each branch are the same as the total voltage, it works better in providing enough energy for different parts of my design. Also, when I tried to cut off one branch from the parallel ciruit, the rest were still functioning. When I did the same thing to the one in series, the entire circuit was broken. This finding also contributes to why I prefer a parallel circuit in my final project.  <br></p>
+    	
+  
+    <img src="./parallel.jpg"alt="Card image cap">
+
+
+     <p> &nbsp; &nbsp; The power inside different colors of LED is another thing I explore after class. I tried to substitute the red LED from my basic circuit with LEDs in other color. I found that the voltage drop around them indeed changed (unfortunately, as we tried duirng lab time, Tinkercad wasn't able to show this). I then looked at the I-V curve of resistors and LEDs. The slope of the graph shows the resistance (Ohm's Law) and the area under show the power (P=VI) The I-V curve for resistors has a constant slope(1/R), meaning a constant resistance. The voltage of LEDs shows a very small change acccording to the graph. 
+     	<br></p>
+
+
+     <p> &nbsp; &nbsp; This graph visually shows the behaviors of LEDs with different colors. 
+     	<br></p>
+
+     	   <img src="./led.jpg"alt="Card image cap">
+
 
 
     
