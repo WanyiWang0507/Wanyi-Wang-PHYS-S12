@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 	<html>
 	<head>
-		<title>Day 4 : Prototyping</title>
+		<title>Day 5 : Programming</title>
 <style>
 /* This style sets the width of all images to 100%: */
 img {
@@ -45,65 +45,81 @@ body {
 	</head>
 	<body>
 	
-		<h1 style = "font-family:Marker Felt"><strong>Day 4 : Prototyping</strong></h1>
-		<h2><strong>July 2</strong></h2>
+		<h1 style = "font-family:Marker Felt"><strong>Day 5 : Programming</strong></h1>
+		<h2><strong>July 7</strong></h2>
 		
-	<p>&nbsp; &nbsp;In today's class, I learnt to use Arbuino to communicate with my metroboard. Because I did not have any experience with coding before, coding on Arduino was a little confusing at the beginning. I learn about the difference between "digital" and "analog". "Digital" marks a binary operation (ex. low and high) yet "analog" quantitatively defines it (ex. a number between 0-255). I used the following code as an example, trying to understanding the basics about Arduino step by step. I felt a lot better after this simple example, as the structure of it can also be applied in more complicated tasks. <br></p>
-
-	<p>&nbsp; &nbsp;I also tried to change the code for vairous commands, such as speed and direction.  <br></p>
-
-		<img src="./code.jpg"alt="Card image cap">
-
-    <p>&nbsp; &nbsp; I then learnt about how to drive a motor with a L9110 motor drive. I chose to working with the stronger Canon motor. The key for me was to make sure that ground (GND) and power input are tightly connected to proper positions.  <br></p>
-
-	 <img src="./inclass.jpg"alt="Card image cap">
-
-
-	<p> &nbsp; &nbsp;Another useful skill I learnt was to change the speed of the motor by a potentiometer. The potentiometer acted as a voltage divider. As its resistance varies, the voltage was divided by different ratios between the motor and the potentiometer, resulting in different speeds on the motor. Here is a picture of the finished circuit. </p>
-	 
-	
-	<img src="./circuit.jpg"alt="Card image cap">
-
-    
-
-    <p> &nbsp; &nbsp; I experimented the vairous speed with a piece of fan-shaped cardboard.   <br></p>
-	
-	<video width="320" height="240" controls>
-		<source src="try.mp4" type="video/mp4">
-		</video>
-	
-
-	 <p> &nbsp; &nbsp;For the assignment, I made a kinetic sculpture inspired by a <a href="https://en.wikipedia.org/wiki/Phenakistiscope">phenakistoscope</a>, a traditional animation device. It uses the concept of Persistence of Vision to present a animated design.  <br></p>
-
-	 <p> &nbsp; &nbsp;The potentiometer circuit I used in class was helpful in changing the speed of the wheel. It was a lot easier with the potentiometer to adjust the rotating speed of the wheel. I also changed to the smaller motor I got from the kit, given the the Canon one moved so fast that the image got very blury. Here's a picture of the established product. <br></p>
-    	
-  
-    <img src="./sculpture.jpg"alt="Card image cap">
-
-     <p> &nbsp; &nbsp;  I split the circle into 12 equal parts and sketched a simple picture with different movements. I created 12 open spaces, which are used later for viewing purposes. I completed several trials to before it functioned, adjusting the size and shape of this piece of paper.   <br></p>
-
-	
-
-
-    <img src="./sketch.jpg"alt="Card image cap">
-
-     <p> &nbsp; &nbsp; Another difficulty I encourtered was to attached my paper to the motor. For a better presentation of my project, I went to get a hot glue gun. Because contact area at the end of the motor was to small, hot glue was not able to stay stably on it. I chose to used a stack of cardboards to gradully increase the contact area, and it worked effectively. At the end of the stack, I put a double-layered cardboard and poked a hole to increate the contact area for hot-gluing. 
-     <br></p>
-
-
-	 <img src="./glue.jpg"alt="Card image cap">
-
-	 <p> &nbsp; &nbsp; This vidoe shows how the final product works, yet filming the amimated effect with a phone was hard. When looking at a mirror placed on the opposite of my device, I was able to see the butterfly "flying".  I would imporve my dedign by increasing the size of the hollows around, or attached a sensor with LED for additional light source.     <br></p>
+	<p>&nbsp; &nbsp; The focus of today's class was still on Arduino. At first, we learnt about the conditional statements (If) on Arduino. The circuit I built invovled a button that controled the LED on the Metro board. A resister was added to the circuit as a puuldown resistor to avoid "floating" voltage that might impact the stability of the circuit. The video below shows a simple example of clicking the button to turn on/off the LED. <br></p>
 
 
 
-    <video width="320" height="240" controls>
-		<source src="result.mov" type="video/mp4">
+	 <video width="320" height="240" controls>
+		<source src="blink.mp4" type="video/mp4">
 		</video>
 
 
+	<p>&nbsp; &nbsp;  For the in-class exercise on this topic, I programmed to count the number of button pushes, as well as a LED that would only be turned on if both buttons are clicked on. I'll be focusing on the first circuit in this documentation. I started off a little confused, which is reflected in the code below. By analyzing bugs in it, I had a better understanding on "setup" and the layered structure of Arduino code. After that, I was able to create my own code which worked okay. I had to divide all my printed values by 2654 though, because once I clicked on the button, the computor already processed for thousands of times. It was definiely as coincident for me to be able to do this, given the slight changes in time every time I clicked the button. <br></p>
 
+
+
+	
+		<img src="./count_self.jpg"alt="Card image cap">
+
+	<p>&nbsp; &nbsp; By referencing from the Arduino example "StateChangeDetection", I added an extra line to my code and solved my previous problem. It states that the action would only be counted if the button state is different from the previous one. As a result, it only counts once when I clicked on the button, becasue after that the buttonstate would be the same as the previous one, causing the counting to pause. <br></p>
+
+
+
+		<img src="./count.jpg"alt="Card image cap">
+
+
+	<p>&nbsp; &nbsp;  Another important Arduino programming I learnt about was loop. Elements within a loop are executed repetitively. The statements inside the loop can include conditional statements, and vice versa. The "for"loop is useful in simplifying the code. I also completed two exercises for this topic, as shown in the instructioc. I had more difficulties on the second one,  turning on an LED responding to a button and then dimming the LED over 2.5 seconds. <br></p>
+
+	<p>&nbsp; &nbsp;  The picture below shows the main part of my code. I referenced from the Arduino example "fading" for the dimming function. At the beginning, the LED performed the dimming process twice every once I clicked on the button. I figured it was because the bouncing button triggered the code twice, from low to high then back to low. I modified my code accordingly, and it functions as expected in the video below.   <br></p>
+
+	<img src="./dim.jpg"alt="Card image cap">
     
+
+
+	 <video width="320" height="240" controls>
+		<source src="dim.mp4" type="video/mp4">
+		</video>
+
+    <p>&nbsp; &nbsp;  There are three components to the assignment. The first one was to continue working on Arduino. I created my own circuit and programming, which    <br></p>
+
+
+
+      <p>&nbsp; &nbsp;  The second part was about 3D modeling. I still chose to work with OnShape, yet I was able to easily apply the Fusion 360 tutorial in this assignment. I created a lampshade, primarily using the "revolve" and 'extrude" functions. I was surprised by how helpful spliting my design in to different parts and indivisually working with them was, even though I've been knowing this function for a while. I also explored more on the "extrude-symmetric" function, which allowed my to create the beautiful pattern. When I first saw something like this, I would instantaneously think of hollowing a big part, but this exercise provided me with a different way of thinking-- to revolve the extruded part instead of removing from the entity. Here is the final product, which I modified a little bit from the tutorial by reducing the number of circular pattern.  <br></p>
+
+
+      <img src="./lamp.jpg"alt="Card image cap">
+
+
+
+       <p>&nbsp; &nbsp;  The last part of th assignment was about the final project. I finalized my idea to be a remote-controlled cat feeder, which would be connected to my phone. Due to its intended size, I decided to purchase a simple model from Amazon, as shown below. This kind of gravity feeder has a lot of prolems, including overfeeding the cat, spilling and lack of flexibility in timing, accoridng to people's comments. I will only apply the purchased item as a basic shape of my final project, adding on features like a remote-controlled motor to create a gate. I also had other ideas about extending its function to thing like toys with bubble wrap, accroding to my initial project proposal. However, by talking to the intructor, we both agree that I should be ranking these features and focusing on the major part due to material and time concerns. As a result, I will keep learning about remote controls and prototyping the rotating gate for my final project.<br></p>
+
+
+
+
+      <img src="./amazon.jpg"alt="Card image cap">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	
 
