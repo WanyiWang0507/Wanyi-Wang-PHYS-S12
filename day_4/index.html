@@ -59,41 +59,41 @@ body {
 
 	<pre><code class="language-arduino">
 
-		const int A1A = 2;  // define pin 3 for A-1A
-const int A1B = 3;  // define pin 4 for A-1B
+			const int A1A = 2;  // define pin 3 for A-1A
+			const int A1B = 3;  // define pin 4 for A-1B
 
-void setup() {
-  pinMode(A1A, OUTPUT); // specify these pins as outputs
-  pinMode(A1B, OUTPUT);    
-}
+			void setup() {
+			  pinMode(A1A, OUTPUT); // specify these pins as outputs
+			  pinMode(A1B, OUTPUT);    
+			}
 
-void loop() {
-  motorA('L', 2000);  // turn left for 2 seconds
-  delay(1000);      // delay for 1 second
-  motorA('R', 2000);  // turn right for 2 seconds
-  delay(1000);      // delay for 1 second
-}
+			void loop() {
+			  motorA('L', 2000);  // turn left for 2 seconds
+			  delay(1000);      // delay for 1 second
+			  motorA('R', 2000);  // turn right for 2 seconds
+			  delay(1000);      // delay for 1 second
+			}
 
 
-/*
- * This is a custom function to drive Motor A
- * inputs: direction (L/R), duration (int) 
- * outputs: motor control
- */
-void motorA(char d, int t) {
-  if(d =='R'){
-    analogWrite(A1A, 100);
-    analogWrite(A1B, 255); 
-  } else if (d =='L'){
-    analogWrite(A1A, 100);
-    analogWrite(A1B, 255);    
-  }
+			/*
+			 * This is a custom function to drive Motor A
+			 * inputs: direction (L/R), duration (int) 
+			 * outputs: motor control
+			 */
+			void motorA(char d, int t) {
+			  if(d =='R'){
+			    analogWrite(A1A, 100);
+			    analogWrite(A1B, 255); 
+			  } else if (d =='L'){
+			    analogWrite(A1A, 100);
+			    analogWrite(A1B, 255);    
+			  }
 
-  delay(t); // allow motor to run for specified time
- 
-  analogWrite(A1A, 0); // turn motor OFF
-  analogWrite(A1B, 0);    
-}
+			  delay(t); // allow motor to run for specified time
+			 
+			  analogWrite(A1A, 0); // turn motor OFF
+			  analogWrite(A1B, 0);    
+			}
 
 </code></pre>
 

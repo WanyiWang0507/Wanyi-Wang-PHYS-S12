@@ -70,91 +70,90 @@ body {
     <pre><code class="language-arduino">
     		
 
-    const int buttonPin = 2;     // the number of the pushbutton pin
-    const int ledPin =  13;      // the number of the LED pin
-    int count = 0;               // Count the button presses
+        const int buttonPin = 2;     // the number of the pushbutton pin
+        const int ledPin =  13;      // the number of the LED pin
+        int count = 0;               // Count the button presses
 
-    // variables will change:
-    int buttonState = 0;         // variable for reading the pushbutton status
+        // variables will change:
+        int buttonState = 0;         // variable for reading the pushbutton status
 
-    void setup() {
-      // initialize the LED pin as an output:
-      pinMode(ledPin, OUTPUT);     
-      // initialize the pushbutton pin as an input:
-      pinMode(buttonPin, INPUT);   
-      Serial.begin (9600) ;
-    }
+        void setup() {
+          // initialize the LED pin as an output:
+          pinMode(ledPin, OUTPUT);     
+          // initialize the pushbutton pin as an input:
+          pinMode(buttonPin, INPUT);   
+          Serial.begin (9600) ;
+        }
 
-    void loop(){
-      // read the state of the pushbutton value:
-      buttonState = digitalRead(buttonPin);
+        void loop(){
+          // read the state of the pushbutton value:
+          buttonState = digitalRead(buttonPin);
 
-      // check if the pushbutton is pressed.
-      // if it is, the buttonState is HIGH:
-      if (buttonState == HIGH) {    
-        // turn LED on:   
-        digitalWrite(ledPin, HIGH); 
-        count++;               // add 1 to the count
-      
-      }
-      else {
-        // turn LED off:
-        digitalWrite(ledPin, LOW);
-      }
+          // check if the pushbutton is pressed.
+          // if it is, the buttonState is HIGH:
+          if (buttonState == HIGH) {    
+            // turn LED on:   
+            digitalWrite(ledPin, HIGH); 
+            count++;               // add 1 to the count
+          
+          }
+          else {
+            // turn LED off:
+            digitalWrite(ledPin, LOW);
+          }
 
-    Serial.println (count/2654);
-    }
+        Serial.println (count/2654);
+        }
 
-        </code></pre>
+     </code></pre>
 
 	<p>&nbsp; &nbsp; By referencing from the Arduino example "StateChangeDetection", I added an extra line to my code and solved my previous problem. It states that the action would only be counted if the button state is different from the previous one. As a result, it only counts once when I clicked on the button, becasue after that the buttonstate would be the same as the previous one, causing the counting to pause. <br></p>
 
 
 
 	<pre><code class="language-arduino">
-// this constant won't change:
-const int  buttonPin = 2;    // the pin that the pushbutton is attached to
-const int ledPin = 13;       // the pin that the LED is attached to
+        const int  buttonPin = 2;    // the pin that the pushbutton is attached to
+        const int ledPin = 13;       // the pin that the LED is attached to
 
-// Variables will change:
-int buttonPushCounter = 0;   // counter for the number of button presses
-int buttonState = 0;         // current state of the button
-int lastButtonState = 0;     // previous state of the button
+        // Variables will change:
+        int buttonPushCounter = 0;   // counter for the number of button presses
+        int buttonState = 0;         // current state of the button
+        int lastButtonState = 0;     // previous state of the button
 
-void setup() {
-  // initialize the button pin as a input:
-  pinMode(buttonPin, INPUT);
-  // initialize the LED as an output:
-  pinMode(ledPin, OUTPUT);
-  // initialize serial communication:
-  Serial.begin(9600);
-}
+        void setup() {
+          // initialize the button pin as a input:
+          pinMode(buttonPin, INPUT);
+          // initialize the LED as an output:
+          pinMode(ledPin, OUTPUT);
+          // initialize serial communication:
+          Serial.begin(9600);
+        }
 
 
-void loop() {
-  // read the pushbutton input pin:
-  buttonState = digitalRead(buttonPin);
+        void loop() {
+          // read the pushbutton input pin:
+          buttonState = digitalRead(buttonPin);
 
-  // compare the buttonState to its previous state
-  if (buttonState != lastButtonState) {
-    // if the state has changed, increment the counter
-    if (buttonState == HIGH) {
-      // if the current state is HIGH then the button went from off to on:
-      buttonPushCounter++;
-      Serial.println("on");
-      Serial.print("number of button pushes: ");
-      Serial.println(buttonPushCounter);
-    } else {
-      // if the current state is LOW then the button went from on to off:
-      Serial.println("off");
-    }
-    // Delay a little bit to avoid bouncing
-    delay(50);
-  }
-  // save the current state as the last state, for next time through the loop
-  lastButtonState = buttonState;
+          // compare the buttonState to its previous state
+          if (buttonState != lastButtonState) {
+            // if the state has changed, increment the counter
+            if (buttonState == HIGH) {
+              // if the current state is HIGH then the button went from off to on:
+              buttonPushCounter++;
+              Serial.println("on");
+              Serial.print("number of button pushes: ");
+              Serial.println(buttonPushCounter);
+            } else {
+              // if the current state is LOW then the button went from on to off:
+              Serial.println("off");
+            }
+            // Delay a little bit to avoid bouncing
+            delay(50);
+          }
+          // save the current state as the last state, for next time through the loop
+          lastButtonState = buttonState;
 
-}
+        }
 
     </code></pre>
 
@@ -165,50 +164,50 @@ void loop() {
 	
 
 <pre><code class="language-arduino">
-	// this constant won't change:
-const int  buttonPin = 2;    // the pin that the pushbutton is attached to
-const int ledPin = 13;       // the pin that the LED is attached to
+	
+      const int  buttonPin = 2;    // the pin that the pushbutton is attached to
+      const int ledPin = 13;       // the pin that the LED is attached to
 
-// Variables will change:
-int buttonPushCounter = 0;   // counter for the number of button presses
-int buttonState = 0;         // current state of the button
-int lastButtonState = 0;     // previous state of the button
+      // Variables will change:
+      int buttonPushCounter = 0;   // counter for the number of button presses
+      int buttonState = 0;         // current state of the button
+      int lastButtonState = 0;     // previous state of the button
 
-void setup() {
-  // initialize the button pin as a input:
-  pinMode(buttonPin, INPUT);
-  // initialize the LED as an output:
-  pinMode(ledPin, OUTPUT);
-  // initialize serial communication:
-  Serial.begin(9600);
-}
-
-
-void loop() {
-  // read the pushbutton input pin:
-  buttonState = digitalRead(buttonPin);
-
-  // compare the buttonState to its previous state
-  if (buttonState != lastButtonState) {
-    // if the state has changed, increment the counter
-    
- 
-      if(buttonState == HIGH)  {
-
-     for (int fadeValue = 255 ; fadeValue >= 0; fadeValue -= 5) {
-    // sets the value (range from 0 to 255):
-    analogWrite(ledPin, fadeValue);
-    // wait for 30 milliseconds to see the dimming effect
-    delay(20); }
- }
-    // Delay a little bit to avoid bouncing
-    delay(50);
-  }
-  // save the current state as the last state, for next time through the loop
-  lastButtonState = buttonState;
+      void setup() {
+        // initialize the button pin as a input:
+        pinMode(buttonPin, INPUT);
+        // initialize the LED as an output:
+        pinMode(ledPin, OUTPUT);
+        // initialize serial communication:
+        Serial.begin(9600);
+      }
 
 
-}
+      void loop() {
+        // read the pushbutton input pin:
+        buttonState = digitalRead(buttonPin);
+
+        // compare the buttonState to its previous state
+        if (buttonState != lastButtonState) {
+          // if the state has changed, increment the counter
+          
+       
+            if(buttonState == HIGH)  {
+
+           for (int fadeValue = 255 ; fadeValue >= 0; fadeValue -= 5) {
+          // sets the value (range from 0 to 255):
+          analogWrite(ledPin, fadeValue);
+          // wait for 30 milliseconds to see the dimming effect
+          delay(20); }
+       }
+          // Delay a little bit to avoid bouncing
+          delay(50);
+        }
+        // save the current state as the last state, for next time through the loop
+        lastButtonState = buttonState;
+
+
+      }
 
     </code></pre>
     
@@ -225,58 +224,58 @@ void loop() {
 
   
 <pre><code class="language-arduino">
-// this constant won't change:
-const int  buttonPin = 2;    // the pin that the pushbutton is attached to
-int LED1 = 7;
-int LED2 = 5;
-int LED3 = 3;
+          // this constant won't change:
+          const int  buttonPin = 2;    // the pin that the pushbutton is attached to
+          int LED1 = 7;
+          int LED2 = 5;
+          int LED3 = 3;
 
-// Variables will change:
-int buttonPushCounter = 0;   // counter for the number of button presses
-int buttonState = 0;         // current state of the button
-int lastButtonState = 0;     // previous state of the button
+          // Variables will change:
+          int buttonPushCounter = 0;   // counter for the number of button presses
+          int buttonState = 0;         // current state of the button
+          int lastButtonState = 0;     // previous state of the button
 
-void setup() {
-  // initialize the button pin as a input:
-  pinMode(buttonPin, INPUT);
-   pinMode(LED1, OUTPUT);
-   pinMode(LED2, OUTPUT);
-   pinMode(LED3, OUTPUT);
+          void setup() {
+            // initialize the button pin as a input:
+            pinMode(buttonPin, INPUT);
+             pinMode(LED1, OUTPUT);
+             pinMode(LED2, OUTPUT);
+             pinMode(LED3, OUTPUT);
 
-  // initialize serial communication:
-  Serial.begin(9600);
-}
-
-
-void loop() {
-  // read the pushbutton input pin:
-  buttonState = digitalRead(buttonPin);
-
-  // compare the buttonState to its previous state
-  if (buttonState != lastButtonState) {
-    // if the state has changed, increment the counter
-    
- 
-      if(buttonState == HIGH)  {
-
-     for (int fadeValue = 255 ; fadeValue >= 0; fadeValue -= 50) {
-  analogWrite(LED1, fadeValue);     
-  delay(100); 
-  analogWrite(LED2, fadeValue);     
-  delay(100); 
-  analogWrite(LED3, fadeValue);     
-  delay(100);  
-  }
- }
-    // Delay a little bit to avoid bouncing
-    delay(50);
-  }
-  // save the current state as the last state, for next time through the loop
-  lastButtonState = buttonState;
+            // initialize serial communication:
+            Serial.begin(9600);
+          }
 
 
-}
-      
+          void loop() {
+            // read the pushbutton input pin:
+            buttonState = digitalRead(buttonPin);
+
+            // compare the buttonState to its previous state
+            if (buttonState != lastButtonState) {
+              // if the state has changed, increment the counter
+              
+           
+                if(buttonState == HIGH)  {
+
+               for (int fadeValue = 255 ; fadeValue >= 0; fadeValue -= 50) {
+            analogWrite(LED1, fadeValue);     
+            delay(100); 
+            analogWrite(LED2, fadeValue);     
+            delay(100); 
+            analogWrite(LED3, fadeValue);     
+            delay(100);  
+            }
+           }
+              // Delay a little bit to avoid bouncing
+              delay(50);
+            }
+            // save the current state as the last state, for next time through the loop
+            lastButtonState = buttonState;
+
+
+          }
+                
        </code></pre>
 	<br>
 
@@ -301,25 +300,6 @@ void loop() {
 
 
       <img src="./amazon.jpg"alt="Card image cap">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 	
