@@ -67,46 +67,45 @@ body {
 
 
 
-	
-<pre><code class="language-arduino">
-		
+    <pre><code class="language-arduino">
+    		
 
-const int buttonPin = 2;     // the number of the pushbutton pin
-const int ledPin =  13;      // the number of the LED pin
-int count = 0;               // Count the button presses
+    const int buttonPin = 2;     // the number of the pushbutton pin
+    const int ledPin =  13;      // the number of the LED pin
+    int count = 0;               // Count the button presses
 
-// variables will change:
-int buttonState = 0;         // variable for reading the pushbutton status
+    // variables will change:
+    int buttonState = 0;         // variable for reading the pushbutton status
 
-void setup() {
-  // initialize the LED pin as an output:
-  pinMode(ledPin, OUTPUT);     
-  // initialize the pushbutton pin as an input:
-  pinMode(buttonPin, INPUT);   
-  Serial.begin (9600) ;
-}
+    void setup() {
+      // initialize the LED pin as an output:
+      pinMode(ledPin, OUTPUT);     
+      // initialize the pushbutton pin as an input:
+      pinMode(buttonPin, INPUT);   
+      Serial.begin (9600) ;
+    }
 
-void loop(){
-  // read the state of the pushbutton value:
-  buttonState = digitalRead(buttonPin);
+    void loop(){
+      // read the state of the pushbutton value:
+      buttonState = digitalRead(buttonPin);
 
-  // check if the pushbutton is pressed.
-  // if it is, the buttonState is HIGH:
-  if (buttonState == HIGH) {    
-    // turn LED on:   
-    digitalWrite(ledPin, HIGH); 
-    count++;               // add 1 to the count
-  
-  }
-  else {
-    // turn LED off:
-    digitalWrite(ledPin, LOW);
-  }
+      // check if the pushbutton is pressed.
+      // if it is, the buttonState is HIGH:
+      if (buttonState == HIGH) {    
+        // turn LED on:   
+        digitalWrite(ledPin, HIGH); 
+        count++;               // add 1 to the count
+      
+      }
+      else {
+        // turn LED off:
+        digitalWrite(ledPin, LOW);
+      }
 
-Serial.println (count/2654);
-}
+    Serial.println (count/2654);
+    }
 
-    </code></pre>
+        </code></pre>
 
 	<p>&nbsp; &nbsp; By referencing from the Arduino example "StateChangeDetection", I added an extra line to my code and solved my previous problem. It states that the action would only be counted if the button state is different from the previous one. As a result, it only counts once when I clicked on the button, becasue after that the buttonstate would be the same as the previous one, causing the counting to pause. <br></p>
 
