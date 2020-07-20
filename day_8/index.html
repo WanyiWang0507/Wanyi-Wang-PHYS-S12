@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 	<html>
 	<head>
-		<title>Day 7: Electric Sensors</title>
+		<title>Day 8: Output Devices</title>
 <style>
 /* This style sets the width of all images to 100%: */
 img {
@@ -51,8 +51,8 @@ body {
 	</head>
 	<body>
 	
-		<h1 style = "font-family:Marker Felt"><strong>Day 7: Electric Sensors</strong></h1>
-		<h2><strong>July 9</strong></h2>
+		<h1 style = "font-family:Marker Felt"><strong>Day 8: Output Device</strong></h1>
+		<h2><strong>July 16</strong></h2>
 		
 	<p>&nbsp; &nbsp; This class was focusing on different types of sensors, which are often used as electric input devices. Among the vairous types, I found the touch sensor and hall sensor to have potentals in my final project. The touch sensor can be added as an additional device on top of the container, which can send out a notification (ex. turn on a LED) if there's not enough cat food in it. The hall effect sensor might be used on the rotated pad to controlled to direction and stooping time of the stepper motor as a swich. I found  <a href="https://youtu.be/cPz5tE2EHR4">this video</a> very inspiring. In class, I used a simple touch sensor to experiment. The connection is shown in the picture below. <br></p>
 
@@ -98,86 +98,4 @@ body {
 
     </code></pre>
 
-	<p>&nbsp; &nbsp; As for my won device, I used something I discovered in the experiment-- I found that differnt poles of the magnet resulted in opposite counts shown in the Serial monitor. I attacjed two small magnets on a metal stick, of which opposite poles are facing out. When I'm moving the stick horizontally, the counts changes accordingly, as shown in the graaph below. AS for calibration, When no magnetic fields was detected, the count was shown as around 515. As the positive pole gets closer, the count increases up to 1008, which it decreases down to 10 as the negetive pole gets closer. <br></p>
-
-	<p>&nbsp; &nbsp;  I'm thinking about incorporate this device on to the opening gate of my cat feeder, so the steeper motor can be ordered to stop once the plate has rotated to let go the cat food, and reverse after a delay for enough cat food to get out. My thought at that point was to move the stepper motor once the count begins to decrease (aka. negative slope, as shown in the graph). There are still problems to be solved, as the plate has to be circular and stable enough, because any small fluctuation can pause the device accidentally.  
-	<br></p>
-
-		<img src="./double.jpg"alt="Card image cap">
-		<br>
-		<img src="./graph.jpg"alt="Card image cap">
-
-	<p>&nbsp; &nbsp;  As for the second part of the assignment, I didn't go with something crazy but created a pressure sensor with the copper tape, non-woven fabric and multiple layers of foam tape. According to the capacitance equation,  C = ε(A/d), the closer the two pieces of copper tapes are, the larger the capacitance becomes, resulting in more charge forced in as  C = q/V. The Serial monitor on Arduino clearly shows how the count increases significantly as I press on the sensor "sandwich". I also tried the same device with Velostat, which worked yet not as well as foam tapes.  <br></p>
-
-
-	<img src="./tape.jpg"alt="Card image cap">
-
-    
-
-<pre><code class="language-arduino">
-
-
-		int read_high;
-		int read_low;
-		int diff;
-
-
-		void setup() {
-		pinMode(4,OUTPUT);      //Pin 4 provides the voltage step
-		Serial.begin(9600);
-		}
-
-		void loop() {
-
-
-		   digitalWrite(4,HIGH);              //Step the voltage high on conductor 1.
-		   read_high = analogRead(A0);        //Measure response of conductor 2.
-		   delayMicroseconds(100);            //Delay to reach steady state.
-		   digitalWrite(4,LOW);               //Step the voltage to zero on conductor 1.
-		   read_low = analogRead(A0);         //Measure response of conductor 2.
-		   diff = read_high - read_low;       //desired answer is the difference between high and low.
-
-		Serial.println(diff);
-		//delay(100);
-
-
-
-		}
-
-    </code></pre>
-
-
-
-
-
-    <video width="320" height="240" controls>
-		<source src="press.mp4" type="video/mp4">
-		</video>
-
-
-
-
-<p>&nbsp; &nbsp;  For my final project, I further improved my 3D modal and got it ready to be 3D printed with Prusa slicer.  <br></p>
-
-
-<img src="./onshape.jpg"alt="Card image cap">
-
-<p>&nbsp; &nbsp;  After talking to the instructor, I improved my modal to achieve a higher efficiency for 3D printing and modified some details as well, including changing the shape of the motor shaft to use one less part in my design. Here's the final product.   <br></p>
-
-
-<img src="./a.jpg"alt="Card image cap">
-
-<img src="./b.jpg"alt="Card image cap">
-
-
-<p>&nbsp; &nbsp; <a download href='./base.stl'>Download STL file for base </a> <br></p>
-
-
-
-<p>&nbsp; &nbsp; <a download href='./circle.stl'>Download STL file for disk </a> <br></p>
-
-<img src="./prusa.jpg"alt="Card image cap">
-
-
-<p>&nbsp; &nbsp; <a download href='./circle.stl'>Download gcode from Prusa slicer</a> <br></p>
-
+	
