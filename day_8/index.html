@@ -54,48 +54,108 @@ body {
 		<h1 style = "font-family:Marker Felt"><strong>Day 8: Output Device</strong></h1>
 		<h2><strong>July 16</strong></h2>
 		
-	<p>&nbsp; &nbsp; This class was focusing on different types of sensors, which are often used as electric input devices. Among the vairous types, I found the touch sensor and hall sensor to have potentals in my final project. The touch sensor can be added as an additional device on top of the container, which can send out a notification (ex. turn on a LED) if there's not enough cat food in it. The hall effect sensor might be used on the rotated pad to controlled to direction and stooping time of the stepper motor as a swich. I found  <a href="https://youtu.be/cPz5tE2EHR4">this video</a> very inspiring. In class, I used a simple touch sensor to experiment. The connection is shown in the picture below. <br></p>
-
-
-	<img src="./touch.jpg"alt="Card image cap">
+	<p>&nbsp; &nbsp; The topic for this class was about electronic outputs, including devices like buzzer, LED strip and motors. My first design was on buzzer. I leanrt to program on Arduino to change the duration and frequency of each tone the buzzer plays. For the assignment, I used the buzzer to play the firts two lines of Summer by Joe Hisaishi. I found a <a href="https://www.audiology.org/sites/default/files/ChasinConversionChart.pdf">converting chart</a> online to figure out the corresponding frequencies.  <br></p>
 
 	
-
-
-	<p>&nbsp; &nbsp;  For the assignment, I started by getting to know more about hall sensors, which can be used by both magnetic field sensors and switches,including latching and non-latching switches. To visulize how it functions, I built a simple circuit where the LED is turned on as a magnet gets closer to the sensor. <br></p>
-
-	<video width="320" height="240" controls>
-		<source src="trial.mp4" type="video/mp4">
-		</video>
-
 	<pre><code class="language-arduino">
+			int buzzerPin = 10;
 
+			void setup() {
 
-		const int hall_Sensor=A0;
-		int inputVal = 0;
+			}// not needed 
 
-		void setup() 
-		{                
-		  pinMode(13, OUTPUT);          // Pin 13 has an LED connected on most Arduino boards:  
-		  pinMode(hall_Sensor,INPUT);    //Pin 2 is connected to the output of proximity sensor
-		  Serial.begin(9600);
-		}
+			void loop() {
+			  tone(buzzerPin, 392, 300);
+			  delay(250);
+			  tone(buzzerPin, 523, 300);
+			  delay(250);
+			  tone(buzzerPin, 587, 300);
+			  delay(250);
+			  tone(buzzerPin, 659, 300);
+			  delay(250);
+			  
+			  tone(buzzerPin, 587, 400);
+			  delay(400);
+			  tone(buzzerPin, 523, 300);
+			  delay(250); 
+			  tone(buzzerPin, 523, 600);
+			  delay(2000);
+			  
+			  tone(buzzerPin, 392, 300);
+			  delay(250);
+			  tone(buzzerPin, 523, 300);
+			  delay(250);
+			  tone(buzzerPin, 587, 300);
+			  delay(250);
+			  tone(buzzerPin, 659, 300);
+			  delay(250);
 
-		void loop() 
-		{
-		  if(digitalRead(hall_Sensor)==HIGH)      //Check the sensor output
-		  {
-		    digitalWrite(13, HIGH);   // set the LED on
-		  }
-		  else
-		  {
-		    digitalWrite(13, LOW);    // set the LED off
-		  }
-		inputVal = analogRead(hall_Sensor);
-		Serial.println(inputVal);
-		delay(500);              // wait for a second
-		}
+			  tone(buzzerPin, 587, 400);
+			  delay(400);
+			  tone(buzzerPin, 523, 300);
+			  delay(250); 
+			  tone(buzzerPin, 587, 400);
+			  delay(400);
+			  tone(buzzerPin, 659, 400);
+			  delay(400);  
+			  tone(buzzerPin, 659, 400);
+			  delay(400);
+			  delay(4000);
+		  
+			}
 
     </code></pre>
+
+
+	<img src="./buzzer.jpg"alt="Card image cap">
+
+	
+     <video width="320" height="240" controls>
+		<source src="summer.mp4" type="video/mp4">
+		</video>
+
+
+
+	<p>&nbsp; &nbsp;  THen I worked with LED strips. At first, I connected the middle wire of the strip to pin 6 on Metro board through a 10k resistor. When I pasted in the code, it became funky and respond with unstable results. Th ereason was the 10 k resistor was too big for this circuit.  <br></p>
+
+	<img src="./wrong.jpg"alt="Card image cap">
+
+
+	<p>&nbsp; &nbsp; After I changed my circuit, I created this colored gradient by including a bit of calculation when defining the RGB value.   <br></p>
+	
+	<pre><code class="language-arduino">
+
+			#include <Adafruit_NeoPixel.h>
+
+			#define PIN        6 
+			#define NUMPIXELS 10 
+			#define DELAYVAL 500 // Time (in milliseconds) to pause between pixels
+
+			Adafruit_NeoPixel strip(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
+
+			void setup() {
+			  strip.begin(); // INITIALIZE NeoPixel strip object (REQUIRED)
+			  strip.show();            // Turn OFF all pixels ASAP
+			  strip.setBrightness(150); // Set BRIGHTNESS low to reduce draw (max = 255)
+			}
+
+			void loop() {
+			//  strip.setPixelColor(n, red, green, blue);
+			  strip.clear();
+			  
+			  for(int i=0; i< NUMPIXELS; i++) { // For each pixel...
+
+			    strip.setPixelColor(i, strip.Color(5+25*i, 0, 250 -i*25));
+
+			    strip.show();   // Send the updated pixel colors to the hardware.
+
+			    delay(DELAYVAL); // Pause before next pass through loop
+			  }
+
+			}
+
+      </code></pre>
+
+
 
 	
