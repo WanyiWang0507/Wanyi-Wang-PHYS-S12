@@ -116,7 +116,7 @@ body {
 
 
 
-	<p>&nbsp; &nbsp;  THen I worked with LED strips. At first, I connected the middle wire of the strip to pin 6 on Metro board through a 10k resistor. When I pasted in the code, it became funky and respond with unstable results. Th ereason was the 10 k resistor was too big for this circuit.  <br></p>
+	<p>&nbsp; &nbsp;  Then I worked with LED strips. At first, I connected the middle wire of the strip to pin 6 on Metro board through a 10k resistor. When I pasted in the code, it became funky and respond with unstable results. Th ereason was the 10 k resistor was too big for this circuit.  <br></p>
 
 	<img src="./wrong.jpg"alt="Card image cap">
 
@@ -125,7 +125,7 @@ body {
 	
 	<pre><code class="language-arduino">
 
-			#include <Adafruit_NeoPixel.h>
+			#include < Adafruit_NeoPixel.h >
 
 			#define PIN        6 
 			#define NUMPIXELS 10 
@@ -155,6 +155,65 @@ body {
 			}
 
       </code></pre>
+
+
+        <video width="320" height="240" controls>
+		<source src="strip.mp4" type="video/mp4">
+		</video>
+
+		<p>&nbsp; &nbsp; I spent the rest of my time investigating on stepper motors, which I'm thinking about usign in my final product, and hopefully it provides enough torque to rotate the ocntainer. It took me quite a while to figure out the wiring, as the stepper motor uses all four connections. I started off by using 5v, which worked during the experiment yet contained problems. I tried to connect the 3D printed disk to the motor. The size of teh shaft was perfect to it to move with the motor. However, a stronger power supply (comparing to 5V) will be needed, as the motor occationally paused and was constantly vibrating during the process. I'll experiment with a external power supply to see if it can work more smmothly. For the programing part, I modified an example code to make the motor revolve a cerntain degree then trun back. It was useful to learn about the calculations between revolution, step and degrees.    <br></p>
+
+
+
+        <pre><code class="language-arduino">
+
+			#include < Stepper.h >
+
+			const int stepsPerRevolution = 200;  // change this to fit the number of steps per revolution
+			// for your motor
+
+			// initialize the stepper library on pins 8 through 11:
+			Stepper myStepper(stepsPerRevolution, 4, 5, 6, 7);
+
+			void setup() {
+			 
+			  myStepper.setSpeed(60);
+
+			  Serial.begin(9600);
+			}
+
+			void loop() {
+			  // step one revolution  in one direction:
+			  Serial.println("clockwise");
+			  myStepper.step(stepsPerRevolution);
+			  delay(100);
+
+			  // step one revolution in the other direction:
+			  Serial.println("counterclockwise");
+			  myStepper.step(-stepsPerRevolution);
+			  delay(100);
+			}
+		</code></pre>
+
+
+	    <img src="./stepper.jpg"alt="Card image cap">
+
+        <br>
+
+		<img src="./disk.jpg"alt="Card image cap">
+        <br>
+
+
+        <video width="320" height="240" controls>
+		<source src="disk.mp4" type="video/mp4">
+		</video>
+
+
+	<p>&nbsp; &nbsp; It was very exciting to get my 3D printed part on hand. The dimensions were able to fit with the motor and other components I prepared. Besides the disk shown above, I also got the printed rectagular base for my cat feeder.   <br></p>
+
+
+	    <img src="./base.jpg"alt="Card image cap">
+
 
 
 
