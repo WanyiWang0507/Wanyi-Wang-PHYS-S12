@@ -17,20 +17,24 @@
 	     https://firebase.google.com/docs/web/setup#available-libraries -->
 	<script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-database.js"></script>
 
+	<script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-analytics.js"></script>
+
 	<script>
 	// Your web app's Firebase configuration
 	var firebaseConfig = {
-		apiKey: "REPLACE_WITH_YOUR_OWN",
-		authDomain: "REPLACE_WITH_YOUR_OWN",
-		databaseURL: "REPLACE_WITH_YOUR_OWN",
-		projectId: "REPLACE_WITH_YOUR_OWN",
-		storageBucket: "REPLACE_WITH_YOUR_OWN",
-		messagingSenderId: "REPLACE_WITH_YOUR_OWN",
-		appId: "REPLACE_WITH_YOUR_OWN"
-	};
-	
+    apiKey: "AIzaSyDPeCCjC5vLpqEzN4iYhvEJ0XbE7Ktl39w",
+    authDomain: "esp32-led-e04c4.firebaseapp.com",
+    databaseURL: "https://esp32-led-e04c4.firebaseio.com",
+    projectId: "esp32-led-e04c4",
+    storageBucket: "esp32-led-e04c4.appspot.com",
+    messagingSenderId: "903140605898",
+    appId: "1:903140605898:web:40293a780fcb737f381933",
+    measurementId: "G-S3F21EWXKX"
+    };
+
 	// Initialize Firebase
 	firebase.initializeApp(firebaseConfig);
+	firebase.analytics();
 
 	// Get a database reference to our blog
 	var ref = firebase.database().ref("/");
@@ -53,5 +57,7 @@
 		});
 	}	
     </script>
+
+
 
 </body>
