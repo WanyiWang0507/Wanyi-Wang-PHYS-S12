@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+    <html>
+	<head>
+		<title>Day 10: Machine Building</title>
+<style>
+/* This style sets the width of all images to 100%: */
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width:50%;
+}
+video
+{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+    width:100%;
+
+}
+/*class="row justify-content-center"*/
+p {
+	margin: 120px; 
+	font-size: 22px; 
+	line-height: 1.5; 
+	font-family: "Palatino, URW Palladio L, serif"; 
+}
+span
+{
+  font-kerning: none
+}
+h1 {
+	margin: 80px; 
+	color: #DE907B;	
+}
+h2 {
+	margin: 80px; 
+	color: #DE907B;	
+}
+body { 
+	color:#4A87A1 ;	
+}
+
+</style>
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/arduino-light.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/arduino.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+	</head>
+	<body>
+	
+		<h1 style = "font-family:Marker Felt"><strong>Day 10: Machine Building</strong></h1>
+		<h2><strong>July 23</strong></h2>
+		
+	<p>&nbsp; &nbsp; In this class, we talked about how to communicate with the Huzzah board from your personla device, which will be one of the key components for my final project. I started off by trying to control it with a simple WIFI server. I had some problems with connecting to my home WIFI because of the 5G setting. Luckily, I was able to get over with that and proved my success on this server by truning on/off a simple LED connected to the Huzzah board. <br></p>
+
+	<video width="400" height="300" controls>
+		<source src="wifi.mp4" type="video/mp4">
+		</video>
+
+
+	<p>&nbsp; &nbsp; After that, I went forward to experiment with Firebase, which makes it possible for my to get access to my cat feeder even when I'm away from home without relying on my home wifi. I created my own <a href="https://console.firebase.google.com/u/0/project/esp32-led-e04c4/overview">Firebase project</a> and kept up using the simple LED circuit.   <br></p>
+
+
+    <img src="./firebase.jpg"alt="Card image cap">
+     <br>
+
+     <br>
+
+
+	<img src="./led.jpg"alt="Card image cap">
+
+
+
+	<p>&nbsp; &nbsp; Then it came to the fun (?) part with me trying to create an entrance on my personl github page to control the stepper motor. I decided to start with the example code provided than tried to modify it. I was able to add a Web app to my firebase project, it worked well with the LED example. However, because I've never learned about, or seen,JaveScript before, it took me a very long time to pick it up. I first watched a bunch of Youtube videos<a href="https://dronebotworkshop.com/wifi-stepper-motor-controller/"> (like this) </a>that talk about how to control stepper motor on internet. However, most of them approach this topic without using Firebase, although they were helpful on wiring up the motor. I then used <a href="https://www.w3schools.com/js/js_input_examples.asp">W3Schools </a>to study the basics about JS.<br></p>
+
+	<img src="./wire.jpg"alt="Card image cap">
+
+
+	<p>&nbsp; &nbsp; In this case, I spent the majority of my working time reading articles and studying about coding. Finally, after referencing from <a href="http://johnny-five.io/examples/stepper-four_wire/"> this article</a>, I created my own version of code. It kind of (...) worked but definitely not as well as I expected it to, so my focus for the next assignmnet would be on this code. Here's a segment of the code I created, and <a href="./firebase.html">my html page</a>. <br></p>
+
+
+
+	<img src="./html.jpg"alt="Card image cap">
