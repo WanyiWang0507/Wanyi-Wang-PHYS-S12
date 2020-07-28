@@ -68,99 +68,102 @@ body {
 
 	<p>&nbsp; &nbsp; To further simplify the operation, I went back add a web app to my Firebase project, and created a webpage with a button. This was exactly where I was confused for the entire week last time. This webpage only tells the Arduino a single command to trigger the following codes that control the Huzzah board. After learning from several tutorials and talking  to the instructor, I figured it out and even added extra elements to make this webpage prettier(?).  <br></p>
 
-	 <img src="./button.jpg"alt="Card image cap">
 
-	 <a href="./firebasev2.html">Link to the page</a>
+	 <p>&nbsp; &nbsp;  <a href="./firebasev2.html">Link to the page</a> <br></p>
 
 
     <p>&nbsp; &nbsp; This is my Arduino code.  <br></p>
 
 
-    <pre><code class="language-arduino">
+       <pre><code class="language-arduino">
        
 
-#include <WiFi.h>                                 // esp32 library
-#include <FirebaseESP32.h>                        // firebase library
+              #include <WiFi.h>                                 // esp32 library
+              #include <FirebaseESP32.h>                        // firebase library
 
-#define FIREBASE_HOST "esp32-led-e04c4.firebaseio.com"  // the project name address from firebase id
-#define FIREBASE_AUTH "twX3LF2tSRJinXFN8uNBNkYQu1bhGi4HzjvMJZ6G"                          // the secret key generated from firebase
-#define WIFI_SSID "FiOS-HCV6V"                                // input your home or public wifi name
-#define WIFI_PASSWORD "ant5869cove3872rye"                            // password of wifi ssid
+              #define FIREBASE_HOST "esp32-led-e04c4.firebaseio.com"  // the project name address from firebase id
+              #define FIREBASE_AUTH "twX3LF2tSRJinXFN8uNBNkYQu1bhGi4HzjvMJZ6G"                          // the secret key generated from firebase
+              #define WIFI_SSID "FiOS-HCV6V"                                // input your home or public wifi name
+              #define WIFI_PASSWORD "ant5869cove3872rye"                            // password of wifi ssid
 
-#include <Stepper.h>
+              #include <Stepper.h>
 
-int motorPin1 = 8;
-int motorPin2 = 9;
-int motorPin3 = 10;
-int motorPin4 = 11;
+              int motorPin1 = 8;
+              int motorPin2 = 9;
+              int motorPin3 = 10;
+              int motorPin4 = 11;
 
-String fireString = "";   
-Stepper myStepper(200, 13, 12, 27, 33);
-FirebaseData firebaseData;
+              String fireString = "";   
+              Stepper myStepper(200, 13, 12, 27, 33);
+              FirebaseData firebaseData;
 
-void setup() {
+              void setup() {
+               
+                myStepper.setSpeed(60);
+
+                Serial.begin(115200);
+                delay(1000);
+
+                WiFi.begin(WIFI_SSID, WIFI_PASSWORD);                          // try to connect with wifi
+
+                Serial.print("Connecting to ");
+                Serial.print(WIFI_SSID);
+                while (WiFi.status() != WL_CONNECTED) {
+                  Serial.print(".");
+                  delay(500);
+                }
+
+                Serial.println();
+                Serial.print("Connected to ");
+                Serial.println(WIFI_SSID);
+                Serial.print("IP Address is : ");
+                Serial.println(WiFi.localIP());                                // print local IP address
+                Firebase.begin(FIREBASE_HOST, FIREBASE_AUTH);                  // connect to firebase
+                Firebase.reconnectWiFi(true);
+                Firebase.set(firebaseData, "/STATUS", "OFF");              // set initial string of "OFF"
+              }
+
+
+
+              void loop() {
+
+               
+                Firebase.get(firebaseData, "/STATUS");                     // get led status input from firebase
+                fireString = firebaseData.stringData(); 
+               
+                
+                 if (fireString == "ON") {   
+                myStepper.step(250);
+                delay(4000);
+
+
+                myStepper.step(-250);
+                delay(500);
+                  }
+                  
+                else {
+                  Serial.println("Please send ON/OFF");
+                }
+                Firebase.set(firebaseData, "/STATUS", "OFF");
+                delay(1000);    
+              }  
+
  
-  myStepper.setSpeed(60);
 
-  Serial.begin(115200);
-  delay(1000);
-
-  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);                          // try to connect with wifi
-
-  Serial.print("Connecting to ");
-  Serial.print(WIFI_SSID);
-  while (WiFi.status() != WL_CONNECTED) {
-    Serial.print(".");
-    delay(500);
-  }
-
-  Serial.println();
-  Serial.print("Connected to ");
-  Serial.println(WIFI_SSID);
-  Serial.print("IP Address is : ");
-  Serial.println(WiFi.localIP());                                // print local IP address
-  Firebase.begin(FIREBASE_HOST, FIREBASE_AUTH);                  // connect to firebase
-  Firebase.reconnectWiFi(true);
-  Firebase.set(firebaseData, "/STATUS", "OFF");              // set initial string of "OFF"
-}
-
-
-
-void loop() {
-
- 
-  Firebase.get(firebaseData, "/STATUS");                     // get led status input from firebase
-  fireString = firebaseData.stringData(); 
- 
-  
-   if (fireString == "ON") {   
-  myStepper.step(250);
-  delay(4000);
-
-
-  myStepper.step(-250);
-  delay(500);
-    }
-    
-  else {
-    Serial.println("Please send ON/OFF");
-  }
-  Firebase.set(firebaseData, "/STATUS", "OFF");
-  delay(1000);    
-}
-
- 
-
-    </code></pre>
+         </code></pre>
 
 
 
 	<p>&nbsp; &nbsp; As for my final project, I put all parts together to create a rough product. Because I didn;t do any of the screwing, it wasn't stable when the stepper motor was moving, which is why it wasn't included in the video above. (I finish the water right before my trial, so there were drops of water left inside...) This device worked as intended for the most parts, while there are still improvements I need to working on in the next week. <br></p>
 
-	<p>&nbsp; &nbsp; (1) Design a safety cap at the top of the tube so the cat won't directly dig in his food <br></p>
-	<p>&nbsp; &nbsp; (2) Make a better connection between the disk and the tube. For this week, I just had little cuts around the edge to tuck in the disk and finished with clear tape. <br></p>
-	<p>&nbsp; &nbsp; (3) Add more content to the button page <br></p>
-	<p>&nbsp; &nbsp; (4) Maybe add an extra function to it, such as the button can only be clicked once per 24 hrs with a timer next to it. <br></p>
+	<p>
+    (1) Design a safety cap at the top of the tube so the cat won't directly dig in his food <br>
+                   
+    (2) Make a better connection between the disk and the tube. For this week, I just had little cuts around the edge to tuck in the disk and finished with clear tape. <br>
+                   
+    (3) Add more content to the button page <br>
+                 
+    (4) Maybe add an extra function to it, such as the button can only be clicked once per 24 hrs with a timer next to it. <br></p>
 
 
 
