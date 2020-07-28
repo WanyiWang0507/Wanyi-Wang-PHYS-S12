@@ -1,0 +1,54 @@
+
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Cat Feeder</title>
+</head>
+
+<body>
+	<button id="turn-on" name="turnon">Feed</button>
+
+
+	<!-- The core Firebase JS SDK is always required and must be listed first -->
+	<script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-app.js"></script>
+
+	<!-- TODO: Add SDKs for Firebase products that you want to use
+	     https://firebase.google.com/docs/web/setup#available-libraries -->
+	<script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-database.js"></script>
+
+	<script>
+	// Your web app's Firebase configuration
+	 var firebaseConfig = {
+    apiKey: "AIzaSyDPeCCjC5vLpqEzN4iYhvEJ0XbE7Ktl39w",
+    authDomain: "esp32-led-e04c4.firebaseapp.com",
+    databaseURL: "https://esp32-led-e04c4.firebaseio.com",
+    projectId: "esp32-led-e04c4",
+    storageBucket: "esp32-led-e04c4.appspot.com",
+    messagingSenderId: "903140605898",
+    appId: "1:903140605898:web:40293a780fcb737f381933",
+    measurementId: "G-S3F21EWXKX"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+
+
+	// Get a database reference to our blog
+	var ref = firebase.database().ref("/");
+
+	// make the buttons call the function below 
+	document.getElementById('turn-on').addEventListener('click', turnOn, false);
+
+	function turnOn(){
+		console.log("turning on");
+		ref.update({
+			"STATUS": "ON"
+		});
+	}
+
+
+    </script>
+
+</body>
