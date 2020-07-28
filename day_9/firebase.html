@@ -67,11 +67,11 @@
   stepper.step(50, () => {
     console.log("done moving CCW");
 
-stepper.step({
-      steps: 2000,
-      direction: Stepper.DIRECTION.CW
-    }, () => console.log("done moving CW"));
-  });
+ stepper.rpm(180).direction(Stepper.DIRECTION.CW).accel(1600).decel(1600);
+  
+  // move 90 degree
+  stepper.step(50, () => {
+    console.log("done moving CW");
 
 	}
     </script>
