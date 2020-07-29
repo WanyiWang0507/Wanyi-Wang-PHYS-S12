@@ -29,7 +29,7 @@ h1 {
 
 		<p>Drag the slider to change the fan speed. </p>
   <div class="slidecontainer">
-          <input type="range" min=1 max=40 value=15 class="slider" id="myRange" oninput="sliderChange(this.value)">
+          <input type="range" min=0 max=100 value=5 class="slider" id="myRange" oninput="sliderChange(this.value)">
              <output id="sliderVal"> </output> 
 		 
 		</div>
@@ -66,9 +66,6 @@ h1 {
 
 var valSlider;
 
-var slider = document.getElementById("myRange");
-var output = document.getElementById("demo");
-		output.innerHTML = slider.value;
 
 slider.oninput = function() {
 		  output.innerHTML = this.value;
