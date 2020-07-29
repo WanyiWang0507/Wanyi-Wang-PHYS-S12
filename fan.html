@@ -30,7 +30,8 @@ h1 {
 		<p>Drag the slider to change the fan speed. </p>
 
 		<div class="slidecontainer">
-		  <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+			<input type="range" min=0 max=100 value=15 class="slider" id="myRange" outinput="sliderChange(this.value)">
+		<output id="sliderVal"> </output>
 		 
 		</div>
 
@@ -61,17 +62,32 @@ h1 {
   firebase.analytics();
 
 
-	// Get a database reference to our blog
-	var ref = firebase.database().ref("/");
 
 
-	var slider = document.getElementById("myRange");
-		var output = document.getElementById("demo");
+
+var ref = firebase.database().ref("/");
+var valSlider;
+
+var slider = document.getElementById("myRange");
+var output = document.getElementById("demo");
 		output.innerHTML = slider.value;
 
-		slider.oninput = function() {
+slider.oninput = function() {
 		  output.innerHTML = this.value;
 		}
+	
+ function sliderChange(val) {
+    document.getElementById('sliderVal').innerHTML = val;
+    valSlider = parseInt(val); 
+    console.log(val);
+ }
+
+function CUSTOM(){
+	console.log("custom");
+	 ref.update({
+      "FAN": valSlider
+    });
+  } 
 
     </script>
 
