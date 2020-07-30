@@ -66,17 +66,13 @@ h1 {
 
 	
  function sliderChange(val) {
+    ref.update({"FAN": valSlider });
     document.getElementById('sliderVal').innerHTML = val;
     valSlider = parseInt(val); 
     console.log(val);
  }
 
-function CUSTOM(){
-	console.log("custom");
-	 ref.update({
-      "FAN": valSlider
-    });
-  } 
+
 
     </script>
 
