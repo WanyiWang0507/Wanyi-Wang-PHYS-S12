@@ -57,11 +57,13 @@ h1 {
 
     // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
+
+  firebase.analytics();
   // Get a database reference to our blog
   var ref = firebase.database().ref("/");
   var valSlider;
 
-  
+
 	
  function sliderChange(val) {
     document.getElementById('sliderVal').innerHTML = val;
