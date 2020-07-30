@@ -55,9 +55,10 @@ button:active {
 
 		<p>Drag the slider to change the fan speed. </p>
 
-    <button class = "button" id="custom" name="customing">Custom Spin</button>
-  <div class="slidecontainer">
-          <input type="range" min=1 max=40 value=15 class="slider" id="myRange" oninput="sliderChange(this.value)">
+ <button class = "button" id="custom" name="customing">Speed</button>
+
+<div class="slidecontainer">
+          <input type="range" min=1 max=200 value=15 class="slider" id="myRange" oninput="sliderChange(this.value)">
              <output id="sliderVal"> </output> 
             <!--<p>Value: <span id="demo"></span></p>-->
         </div>
@@ -86,12 +87,12 @@ button:active {
     // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 
-  firebase.analytics();
+ 
   // Get a database reference to our blog
   var ref = firebase.database().ref("/");
   var valSlider;
 
-  document.getElementById('custom').addEventListener('click', CUSTOM, false);
+ document.getElementById('custom').addEventListener('click', CUSTOM, false;
 	
  function sliderChange(val) {
     document.getElementById('sliderVal').innerHTML = val;
@@ -103,7 +104,7 @@ button:active {
   function CUSTOM(){
     console.log("custom");
     ref.update({
-      "FAN": valSlider
+      "SPEED": valSlider
     });
   } 
 
