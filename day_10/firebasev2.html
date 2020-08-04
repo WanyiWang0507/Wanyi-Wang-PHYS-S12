@@ -57,7 +57,8 @@ button:active {
 <body>
 	
 
-	<button id="turn-on" name="turnon">Feed</button>
+	<button id="turn-on" name="turnon">Quick Feed</button>
+	<button id="turn-on" name="turnon">Diet Mode</button>
 
 
 	<!-- The core Firebase JS SDK is always required and must be listed first -->
@@ -71,6 +72,8 @@ button:active {
 
 
     	<p id="demo"></p>
+
+    	<p id="countTime"></p>
 
 	<script>
 	// Your web app's Firebase configuration
@@ -92,13 +95,51 @@ button:active {
 	// Get a database reference to our blog
 	var ref = firebase.database().ref("/");
 	var x=0; 
+
+
+    
+    var countDownDate = new Date("Jan 5, 2021 15:37:25").getTime();
+
+// Update the count down every 1 second
+    var x = setInterval(function() {
+
+  // Get today's date and time
+    var now = new Date().getTime();
+    
+  // Find the distance between now and the count down date
+    var distance = now - countDownDate;
+    
+  // Time calculations for days, hours, minutes and seconds
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+  // Output the result in an element with id="demo"
+    document.getElementById("countTime").innerHTML =  hours + "h "
+  + minutes + "m " + seconds + "s ";
+
+
+
+
+
+
+
+
 	// make the buttons call the function below 
 	document.getElementById('turn-on').addEventListener('click', turnOn, false);
+    document.getElementById('turn-on').addEventListener('click', diet, false);
 
 	function turnOn(){
 		console.log("turning on");
 		ref.update({
 			"STATUS": "ON"
+		});
+	}
+
+	function diet(){
+		console.log("diet mode");
+		ref.update({
+			"DIET": "ON"
 		});
 	}
    
@@ -110,6 +151,12 @@ button:active {
 		});
    
     }
+
+
+
+
+
+    
 
 
 
