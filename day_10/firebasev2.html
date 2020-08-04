@@ -57,10 +57,10 @@ button:active {
 
 	
 
-	<button id="turn-on" name="turnon">Quick Feed</button>
-	<button id="turn-on" name="turnon">Diet Mode</button>
+	<button id="quick" name="quick">Quick Feed</button>
+	<button id="diet" name="diet">Diet Mode</button>
 
-	<h2><time>00:00:00</time></h2>
+	<h1><time id="time"> 00:00:00</time></h1>
 
 
 	<!-- The core Firebase JS SDK is always required and must be listed first -->
@@ -100,13 +100,13 @@ button:active {
 
 
 
-	var h2 = document.getElementsByTagName('h2')[0],
+	var time = document.getElementsById('time'),
     var clear = document.getElementById('clear'),
     var seconds = 0, minutes = 0, hours = 0,
     var t;
 
     	// make the buttons call the function below 
-	document.getElementById('turn-on').addEventListener('click', turnOn, false);
+	document.getElementById('quick').addEventListener('click', turnOn, false);
     document.getElementById('diet').addEventListener('click', diet, false);
 
 	function add() {
@@ -120,7 +120,7 @@ button:active {
         }
       }
     
-      h1.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
+      time.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
 
     timer();
      }
@@ -130,8 +130,8 @@ button:active {
      }
     timer();
  
-      turnON.onclick = function() {
-      h2.textContent = "00:00:00";
+    function resetTimer (){
+      time.textContent = "00:00:00";
       seconds = 0; minutes = 0; hours = 0;
       timer();
        }
@@ -141,7 +141,10 @@ button:active {
 		console.log("turning on");
 		ref.update({
 			"STATUS": "ON"
+
 		});
+
+		resetTimer();
 	}
 
 	function diet(){
@@ -149,6 +152,7 @@ button:active {
 		ref.update({
 			"DIET": "ON"
 		});
+		resetTimer();
 	}
    
 
