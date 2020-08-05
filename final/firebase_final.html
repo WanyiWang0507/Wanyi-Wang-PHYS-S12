@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+	<title>Cat Feeder</title>
+
+<style>
+/* This style sets the width of all images to 100%: */
+
+h1 {
+	margin: 50px; 
+	color: #DE907B;	
+	font-size: 70px; 
+}
+
+h2 {
+	margin: 50px; 
+	color: #DE907B;	
+	font-size: 30px; 	
+}
+
+
+button {
+	box-shadow: 0px 16px 10px -5px #9fb4f2;
+	background:linear-gradient(to bottom, #7892c2 5%, #476e9e 100%);
+	background-color:#7892c2;
+	border-radius:12px;
+	border:2px solid #4e6096;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:28px;
+	font-weight:bold;
+	padding:23px 60px;
+	text-decoration:none;
+	text-shadow:0px 4px 0px #324166;
+	margin: 50px; 
+}
+button:hover {
+	background:linear-gradient(to bottom, #476e9e 5%, #7892c2 100%);
+	background-color:#476e9e;
+}
+button:active {
+	position:relative;
+	top:1px;
+}
+
+p {
+	margin: 50px; 
+	color:#4A87A1;
+	font-size: 30px; 
+	line-height: 1.5; 
+	font-family: "Palatino, URW Palladio L, serif"; 
+}
+</style>
+
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/arduino-light.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/arduino.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+</head>
+
+<body>
+	
+	<div class="w3-container w3-center">
+	
+	<h1 style = "font-family:Marker Felt"><strong>Cat Feeder</strong><img src="cat.gif" align="right" style="width:250px;height:250px;"></h1>
+
+	<p> Please choose how you plan to feed your cat!</p>
+
+	<br>
+
+	<button id="quick" name="quick">Quick Feed</button>
+	<button id="diet" name="diet">Diet Mode</button>
+   
+    <p> Enter the target calorie intake of your cat for diet mode </p>
+    <input type="text" style=" box-sizing: border-box;
+  border: 4px solid #DE907B;
+  border-radius: 4px; height:50px; width:300px" id="myInput" oninput="myFunction()">
+
+
+	<p>It has been<time id="time" style= "margin: 50px; 
+	color: #DE907B;	
+	font-size: 30px;">00:00:00</time>since you fed your cat last time</p>
+
+
+
+
+	<!-- The core Firebase JS SDK is always required and must be listed first -->
+	<script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-app.js"></script>
+
+	<!-- TODO: Add SDKs for Firebase products that you want to use
+	     https://firebase.google.com/docs/web/setup#available-libraries -->
+	<script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-database.js"></script>
+    	
+    <!-- 	<p id="demo"></p>
+
+    	<p id="countTime"></p> -->
+
+	<script>
+	// Your web app's Firebase configuration
+	 var firebaseConfig = {
+    apiKey: "AIzaSyDPeCCjC5vLpqEzN4iYhvEJ0XbE7Ktl39w",
+    authDomain: "esp32-led-e04c4.firebaseapp.com",
+    databaseURL: "https://esp32-led-e04c4.firebaseio.com",
+    projectId: "esp32-led-e04c4",
+    storageBucket: "esp32-led-e04c4.appspot.com",
+    messagingSenderId: "903140605898",
+    appId: "1:903140605898:web:40293a780fcb737f381933",
+    measurementId: "G-S3F21EWXKX"
+  };
+  
+
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+ 
+
+
+	// Get a database reference to our blog
+	var ref = firebase.database().ref("/");
+	var x=0; 
+	var time = document.getElementById('time');
+    var seconds = 0, minutes = 0, hours = 0;
+    var t;
+
+    // make the buttons call the function below 
+	document.getElementById('quick').addEventListener('click', turnOn, false);
+    document.getElementById('diet').addEventListener('click', diet, false);
+
+	
+	function add() {
+        seconds++;
+        if (seconds >= 60) {
+            seconds = 0;
+            minutes++;
+	        if (minutes >= 60) {
+	            minutes = 0;
+	            hours++;
+	        }
+	      }
+    
+      time.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
+      	timer();
+    }
+
+
+    
+    function timer() {
+    t = setTimeout(add, 1000);
+      }
+    timer();
+ 
+    function resetTimer (){
+      time.textContent = "00:00:00";
+      seconds = 0; minutes = 0; hours = 0;
+    }
+
+
+	function turnOn(){
+		console.log("turning on");
+		ref.update({
+			"STATUS": "ON"
+		});
+		resetTimer();
+	}
+
+	
+	function diet(){
+		console.log("diet mode");
+		ref.update({
+			"DIET": "ON"
+		});
+		resetTimer();
+	}
+   
+
+    function myFunction() {
+       x = document.getElementById("myInput").value;
+       ref.update({
+			"AMOUNT": x
+		});
+    }
+
+
+
+
+    </script>
+
+</body>
