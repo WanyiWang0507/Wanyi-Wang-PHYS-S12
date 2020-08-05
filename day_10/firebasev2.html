@@ -13,6 +13,11 @@ h1 {
 	color: #DE907B;	
 }
 
+h2 {
+	margin: 70px; 
+	color:#4A87A1;	
+}
+
 
 button {
 	box-shadow: 0px 16px 10px -5px #9fb4f2;
@@ -40,27 +45,37 @@ button:active {
 	top:1px;
 }
 
-
-
+p {
+	margin: 120px; 
+	font-size: 60px; 
+	line-height: 1.5; 
+	font-family: "Palatino, URW Palladio L, serif"; 
+}
 </style>
+
+
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/arduino-light.min.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/arduino.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-	</head>
-	<body>
-	
-		<h1 style = "font-family:Marker Felt"><strong>Cat Feeder</strong></h1>
+</head>
 
-
+<body>
 	
+	<h1 style = "font-family:Marker Felt"><strong>Cat Feeder</strong></h1>
+
+	<p> Please choose how you wanna feed your cat!</p>
 
 	<button id="quick" name="quick">Quick Feed</button>
 	<button id="diet" name="diet">Diet Mode</button>
+   
+    <p> Enter the target calorie intake of your cat</p>
+    <input type="text" id="myInput" oninput="myFunction()">
 
-	<h1><time id="time"> 00:00:00</time></h1>
+
+	<h2><time id="time"> 00:00:00</time></h2>
 
 
 	<!-- The core Firebase JS SDK is always required and must be listed first -->
@@ -69,13 +84,10 @@ button:active {
 	<!-- TODO: Add SDKs for Firebase products that you want to use
 	     https://firebase.google.com/docs/web/setup#available-libraries -->
 	<script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-database.js"></script>
+    	
+    <!-- 	<p id="demo"></p>
 
-	 <input type="text" id="myInput" oninput="myFunction()">
-
-
-    	<p id="demo"></p>
-
-    	<p id="countTime"></p>
+    	<p id="countTime"></p> -->
 
 	<script>
 	// Your web app's Firebase configuration
@@ -89,6 +101,8 @@ button:active {
     appId: "1:903140605898:web:40293a780fcb737f381933",
     measurementId: "G-S3F21EWXKX"
   };
+  
+
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
  
@@ -97,18 +111,15 @@ button:active {
 	// Get a database reference to our blog
 	var ref = firebase.database().ref("/");
 	var x=0; 
-
-
-
 	var time = document.getElementById('time');
- 
     var seconds = 0, minutes = 0, hours = 0;
     var t;
 
-    	// make the buttons call the function below 
+    // make the buttons call the function below 
 	document.getElementById('quick').addEventListener('click', turnOn, false);
     document.getElementById('diet').addEventListener('click', diet, false);
 
+	
 	function add() {
         seconds++;
         if (seconds >= 60) {
@@ -124,29 +135,28 @@ button:active {
       	timer();
     }
 
+
     
     function timer() {
     t = setTimeout(add, 1000);
-     }
+      }
     timer();
  
     function resetTimer (){
       time.textContent = "00:00:00";
       seconds = 0; minutes = 0; hours = 0;
-      // timer();
-       }
+    }
 
 
 	function turnOn(){
 		console.log("turning on");
 		ref.update({
 			"STATUS": "ON"
-
 		});
-
 		resetTimer();
 	}
 
+	
 	function diet(){
 		console.log("diet mode");
 		ref.update({
@@ -161,7 +171,6 @@ button:active {
        ref.update({
 			"AMOUNT": x
 		});
-   
     }
 
 
