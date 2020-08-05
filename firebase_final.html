@@ -3,19 +3,23 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 	<title>Cat Feeder</title>
 
 <style>
 /* This style sets the width of all images to 100%: */
 
 h1 {
-	margin: 80px; 
+	margin: 50px; 
 	color: #DE907B;	
+	font-size: 50px; 
 }
 
 h2 {
-	margin: 70px; 
-	color:#4A87A1;	
+	margin: 50px; 
+	color: #DE907B;	
+	font-size: 30px; 	
 }
 
 
@@ -34,7 +38,7 @@ button {
 	padding:23px 60px;
 	text-decoration:none;
 	text-shadow:0px 4px 0px #324166;
-	margin: 120px; 
+	margin: 50px; 
 }
 button:hover {
 	background:linear-gradient(to bottom, #476e9e 5%, #7892c2 100%);
@@ -46,8 +50,9 @@ button:active {
 }
 
 p {
-	margin: 120px; 
-	font-size: 60px; 
+	margin: 50px; 
+	color:#4A87A1;
+	font-size: 30px; 
 	line-height: 1.5; 
 	font-family: "Palatino, URW Palladio L, serif"; 
 }
@@ -60,22 +65,27 @@ p {
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/arduino.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
+
+
 </head>
 
 <body>
+	<div class="w3-container w3-center">
 	
 	<h1 style = "font-family:Marker Felt"><strong>Cat Feeder</strong></h1>
 
-	<p> Please choose how you wanna feed your cat!</p>
+	<p> Please choose how you plan to feed your cat!</p>
 
 	<button id="quick" name="quick">Quick Feed</button>
 	<button id="diet" name="diet">Diet Mode</button>
    
-    <p> Enter the target calorie intake of your cat</p>
+    <p> Enter the target calorie intake of your cat, </p>
     <input type="text" id="myInput" oninput="myFunction()">
 
 
-	<h2><time id="time"> 00:00:00</time></h2>
+	<p>It has been<time id="time" style= "margin: 50px; 
+	color: #DE907B;	
+	font-size: 30px;">00:00:00</time>since you fed your cat last time</p>
 
 
 	<!-- The core Firebase JS SDK is always required and must be listed first -->
