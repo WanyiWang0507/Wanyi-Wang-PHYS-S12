@@ -13,7 +13,7 @@
 h1 {
 	margin: 50px; 
 	color: #DE907B;	
-	font-size: 50px; 
+	font-size: 70px; 
 }
 
 h2 {
@@ -70,11 +70,14 @@ p {
 </head>
 
 <body>
+	
 	<div class="w3-container w3-center">
 	
-	<h1 style = "font-family:Marker Felt"><strong>Cat Feeder</strong></h1>
+	<h1 style = "font-family:Marker Felt"><strong>Cat Feeder</strong><img src="cat.gif" align="right" style="width:250px;height:250px;"></h1>
 
 	<p> Please choose how you plan to feed your cat!</p>
+
+	<br>
 
 	<button id="quick" name="quick">Quick Feed</button>
 	<button id="diet" name="diet">Diet Mode</button>
@@ -86,6 +89,8 @@ p {
 	<p>It has been<time id="time" style= "margin: 50px; 
 	color: #DE907B;	
 	font-size: 30px;">00:00:00</time>since you fed your cat last time</p>
+
+
 
 
 	<!-- The core Firebase JS SDK is always required and must be listed first -->
@@ -182,6 +187,7 @@ p {
 			"AMOUNT": x
 		});
     }
+
 
 
 
