@@ -41,6 +41,14 @@ body {
 	color:#4A87A1 ;	
 }
 
+ul.b {
+  list-style-type: square;
+  margin: 120px; 
+	font-size: 22px; 
+	line-height: 1.5; 
+	font-family: "Palatino, URW Palladio L, serif"; 
+}
+
 </style>
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/arduino-light.min.css">
@@ -49,16 +57,111 @@ body {
 <script>hljs.initHighlightingOnLoad();</script>
 
 
-	</head>
+
+</head>
 	
 
   <body>
 	
-		<h1 style = "font-family:Marker Felt"><strong>Day 10: Machine Building</strong></h1>
-		<h2><strong>Proposal: </strong></h2>
-		
+		<h1 style = "font-family:Marker Felt"><strong>Final project</strong></h1>
+
+
+	<P> Watch my <a href="https://www.youtube.com/watch?v=9Ci_94Kh0bI&feature=youtu.be">Youtube video</a> </P>
+
+
+
+	<p> To conclude this course, I created a cat feeder as my final project. In this documentation, I recorded some of the main challenges and incremental process of my project. I started off wanting to make a cat toy with a feeding function, as shown in the<a href="./day_1/index.html"> project proposal</a>. As I went deeper into all the skills, I decided to simply create a cat feeder that is remotely controlled. </p>
+
+	<p> To make it more of an unique and creative project, I added two more functions to it-- portion control and timer. User can either choose the Quick Feed Mode, feeding the cat by simply pressing a button, or Diet Mode, costumizing the amount of caf foods released with a target calorie. A timer would be on the webpage as well to remind the user the last time he/she feeds the cat. Comparing to similar products in the market, these two features definitely make my product stand out. Besides, a similart product costs about $160-250, making price another advantage of my design. </p>
+
+
+
+
+	<h2><strong>Main Components:</strong></h2>
+
+		 <ul class="b">
+		  <li>Stepper Motor (Nema 17 Bipolar)</li>
+		  <li>Adafruit HUZZAH32 – ESP32 Feather Board </li>
+		  <li>5V Power Bank</li>
+		  <li>1.5L Water Bottle</li>
+		  <li>Connections(cable, wire, screw, etc.) </li>
+		  </ul>
+
+		</div>
+
+	<h2><strong>Tools & Softwares:</strong></h2>
+
+
+	 <ul class="b">
+		  <li>Github</li>
+		  <li>Arduino IDE </li>
+		  <li>OnShape</li>
+		  <li>SublimeText</li>
+		  <li>Prusa</li>
+		  </ul>
 	
-   <p>&nbsp; &nbsp;  <a href="./firebase_final.html">Website</a> <br></p>
+
+
+	<h2><strong>3D Modaling:</strong></h2>
+
+
+	<p> I had some experience with OnShape prior to this class, so I chose it for my project. I designed the base for the cat feeder and a disk for the container on top to rotate. During the process, I learned the importance of simplifying the modal for higher efficiency of printing and assembling. As a result, I gave up on the idea of making a seperate gate for the cat food to come out. Instead, I incorporate that entrance and motor shaft to existing parts. Both of the parts are designed according to the dimension of a 1.5L water bottle, which I later attached to the disk with hot glue gun. Prusa Slcier was used to prepare my modal for 3D printing, as shown in the video. Here's a picture of the design. </p>
+
+
+	<img src="./onshape.jpg"alt="Card image cap">
+
+	<img src="./shape.jpg"alt="Card image cap">
+
+	<h2><strong>Coding: </strong></h2>
+
+
+	<p> I set up a HTML page to commuicate with my Huzzah board through Firebase. It took me quite a while to understand how these three communicate with each other, as well as to get use to Javascript. I created three main functions to satisfy my initial ideas-- two feeding buttons and a text entry for portion control. In addition, I added a timer that displays the time that has passed since last time the cat was fed.   </p>
+
+    <img src="./content.jpg"alt="Card image cap">
+
+	<br>
+
+	<img src="./function.jpg"alt="Card image cap">
+
+	<br>
+
+	<img src="./timer.jpg"alt="Card image cap">
+
+
+	<p> I tried my best to simplify my webpage to make it more user-friendly and pretty (?). I also make sure that it presents well on different devices. Here's a screen recording clip from my phone. </p>
+
+	<video width="400" height="300" controls>
+		<source src="phone.mp4" type="video/mp4">
+		</video>
+
+
+
+
+	<p> As for the Arduino coding, the first trouble I encountered was the motor skipping steps. Even though it was supposed to be 200 stpes/revolution, it went for somewhere between 60 to 120 degrees when I ordered it to go 250 steps. I tried multiple ways for trouble shooting, and it turned out to be the problem with voltage. As a result, I connected an outside 5V power bank to the Huzzah board, and it set up a solid foundation for my next steps. </p>
+
+
+	<img src="./power.jpg"alt="Card image cap">
+
+
+
+	<p> Initially, I had my disk rotate for a certain degree and stay in position for a cerntain amount of time with the Delay function to let go the cat food. However, the result was extremely unstable with the entrance easily blocked by cat food. In that case, my goal of portion contral with changing delay time also failed. By talking to the instuctor, I figured an additional shaking action would be helpful. I went ahead to use a For loop to repeat a small angle change for a shaking effect. It was a lot of trials and erros, with me basically trying out differnet values. Here're some the failures: </p>
+
+
+        <video width="400" height="300" controls>
+		<source src="much.mov" type="video/mov">
+		</video>
+<br>
+		<video width="400" height="300" controls>
+		<source src="little.mov" type="video/mov">
+		</video>
+
+	<p> To communicating with the Amount input on Firebase, I decided to appky that value to the For loop, changing how may times the function would be repeated for. A bit of calculation is also included to convert target calorie intake to repeating times. </p>
+
+
+	<img src="./for_diet.jpg"alt="Card image cap">
+
+
+   <p> This is the full Arduino code. </p>
 
    <div class="center">
 
@@ -68,17 +171,28 @@ body {
 
 
 
+   <h2><strong>Result: </strong></h2>
+
+
+   <video width="400" height="300" controls>
+		<source src="little.mov" type="video/mov">
+		</video>
+
+ 	<h2> <a href="./firebase_final.html">Visit</a> my cat feeder webpage here!  </h2>
 
 
 
+ 	<h2><strong>Future Potentials:  </strong></h2>
 
+ 	<ul class="b">
+		  <li>A sensor that sends alert to the website when running low on cat food</li>
+		  <li>More accurate portion control (instead of different amount of shakes) </li>
+		  <li> A mroe stable external power supply, given that the power bank I used needs to be charged often</li>
+		 
+		  </ul>
+	
 
-
-
-
-
-
-
+	<h2><strong> Thank you! </strong></h2>
 
 
 
